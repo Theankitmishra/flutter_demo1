@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_demo1/core/store.dart';
 import 'package:flutter_demo1/models/cart.dart';
 import 'dart:convert';
@@ -30,11 +31,11 @@ class _HomePageState extends State<HomePage> {
 
   loadData() async {
     await Future.delayed(Duration(seconds: 2));
-    // final catalogJson =
-    //     await rootBundle.loadString("assets/files/catalog.json");
+    final catalogJson =
+        await rootBundle.loadString("assets/files/catalog.json");
 
-    final response = await http.get(Uri.parse(url));
-    final catalogJson = response.body;
+    // final response = await http.get(Uri.parse(url));
+    // final catalogJson = response.body;
     final decodedData = jsonDecode(catalogJson);
     var productsData = decodedData["products"];
     CatalogModel.items = List.from(productsData)
@@ -51,7 +52,7 @@ class _HomePageState extends State<HomePage> {
         floatingActionButton: VxBuilder(
           mutations: {AddMutation, RemoveMutation},
           builder: (ctx, _, __) => FloatingActionButton(
-            onPressed: () => Navigator.pushNamed(context, MyRoutes.cartRoute),
+            onPressed: () => context.vxNav.push(Uri(path: MyRoutes.cartRoute)),
             backgroundColor: context.theme.buttonColor,
             child: Icon(
               CupertinoIcons.cart,

@@ -4,7 +4,7 @@ import 'package:flutter_demo1/models/cart.dart';
 import 'package:velocity_x/velocity_x.dart';
 
 class CartPage extends StatelessWidget {
-  const CartPage({super.key});
+  CartPage({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -53,7 +53,7 @@ class _CartTotal extends StatelessWidget {
             },
             style: ButtonStyle(
                 backgroundColor:
-                    MaterialStateProperty.all(context.theme.buttonColor)),
+                    MaterialStateProperty.all(context.theme.primaryColor)),
             child: "Buy".text.white.make(),
           ).w32(context)
         ],
